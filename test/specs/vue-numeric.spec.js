@@ -3,7 +3,6 @@ import Vue from 'vue'
 import { mount } from '@vue/test-utils';
 import { expect } from 'chai';
 import VueNumeric from '../../src/vue-numeric';
-import sinon from 'sinon';
 
 describe('vue-numeric.vue', () => {
   it('Use default decimal separator', () => {
