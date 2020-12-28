@@ -1,9 +1,9 @@
 /* eslint-env mocha */
 import Vue from 'vue'
-import { expect } from 'chai'
-import { mount } from 'avoriaz'
-import VueNumeric from '@/vue-numeric'
-import sinon from 'sinon'
+import { mount } from '@vue/test-utils';
+import { expect } from 'chai';
+import VueNumeric from '../../src/vue-numeric';
+import sinon from 'sinon';
 
 describe('vue-numeric.vue', () => {
   it('Use default decimal separator', () => {

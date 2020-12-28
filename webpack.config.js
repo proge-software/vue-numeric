@@ -1,9 +1,11 @@
 /* eslint-env node */
 
 const path = require('path')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const { CleanWebpackPlugin} = require('clean-webpack-plugin')
+const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
+  mode: 'development',
   context: __dirname,
   resolve: {
     modules: [
@@ -11,7 +13,7 @@ module.exports = {
       'node_modules'
     ],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      'vue$': 'vue/dist/vue.esm-bundler.js'
     },
     extensions: ['.js', '.json', '.vue']
   },
@@ -40,12 +42,17 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
+        options: {
+          // Here you should change 'env' to '@babel/preset-env'
+          presets: ['@babel/preset-env'],
+        },
         exclude: path.resolve(__dirname, 'node_modules')
       }
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(['./dist'])
+    new CleanWebpackPlugin(),
+    new VueLoaderPlugin()
   ],
   devtool: false,
   performance: {
