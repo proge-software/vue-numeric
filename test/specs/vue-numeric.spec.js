@@ -50,10 +50,13 @@ describe('vue-numeric.vue', () => {
     expect(wrapper.data().amount).to.equal('$ 2 000 000,00')
   })
 
-  it('format values with correct decimals symbol when using different thousand separator', () => {
-    const wrapper = mount(VueNumeric, { propsData: { modelValue: 20000.36, precision: 1, currency: '$', separator: '.' }})
-    expect(wrapper.data().amount).to.equal('$ 20.000,4')
-  })
+  it(
+    'format values with correct decimals symbol when using different thousand separator',
+    () => {
+      const wrapper = mount(VueNumeric, { propsData: { modelValue: 20000.36, precision: 1, currency: '$', separator: '.' }})
+      expect(wrapper.data().amount).to.equal('$ 20.000,4')
+    }
+  )
 
   it('outputs Number type by default', () => {
     const component = Vue.extend({
@@ -212,7 +215,7 @@ describe('vue-numeric.vue', () => {
   })
 
   it('process value on input', () => {
-    const process = sinon.stub()
+    const process = jest.fn();
     const wrapper = mount(VueNumeric, { propsData: { modelValue: 2000 }, methods: { process }})
     wrapper.trigger('input')
     expect(process.called).to.equal(true)
@@ -223,37 +226,46 @@ describe('vue-numeric.vue', () => {
     expect(wrapper.data().amount).to.equal('')
   })
 
-  it('sets the value to 0 when no empty value is provided and input is empty', () => {
-    const wrapper = mount(VueNumeric, { propsData: { modelValue: '' }})
-    expect(wrapper.data().amount).to.equal('0')
-  })
+  it(
+    'sets the value to 0 when no empty value is provided and input is empty',
+    () => {
+      const wrapper = mount(VueNumeric, { propsData: { modelValue: '' }})
+      expect(wrapper.data().amount).to.equal('0')
+    }
+  )
 
   it('uses the provided empty value when input is empty', () => {
     const wrapper = mount(VueNumeric, { propsData: { modelValue: '', emptyValue: 1 }})
     expect(wrapper.data().amount).to.equal('1')
   })
 
-  it('apply min props value if user input negative value when minus props disabled', () => {
-    const component = Vue.extend({
-      data: () => ({ total: -200 }),
-      template: '<div><vue-numeric :modelValue="total" :min="150" :minus="false"></vue-numeric></div>',
-      components: { VueNumeric }
-    })
+  it(
+    'apply min props value if user input negative value when minus props disabled',
+    () => {
+      const component = Vue.extend({
+        data: () => ({ total: -200 }),
+        template: '<div><vue-numeric :modelValue="total" :min="150" :minus="false"></vue-numeric></div>',
+        components: { VueNumeric }
+      })
 
-    const wrapper = mount(component)
-    expect(wrapper.data().total).to.equal(150)
-  })
+      const wrapper = mount(component)
+      expect(wrapper.data().total).to.equal(150)
+    }
+  )
 
-  it('apply 0 value if user input negative value when minus props disabled and min props is negative too', () => {
-    const component = Vue.extend({
-      data: () => ({ total: -200 }),
-      template: '<div><vue-numeric :modelValue="total" :min="-150" :minus="false"></vue-numeric></div>',
-      components: { VueNumeric }
-    })
+  it(
+    'apply 0 value if user input negative value when minus props disabled and min props is negative too',
+    () => {
+      const component = Vue.extend({
+        data: () => ({ total: -200 }),
+        template: '<div><vue-numeric :modelValue="total" :min="-150" :minus="false"></vue-numeric></div>',
+        components: { VueNumeric }
+      })
 
-    const wrapper = mount(component)
-    expect(wrapper.data().total).to.equal(0)
-  })
+      const wrapper = mount(component)
+      expect(wrapper.data().total).to.equal(0)
+    }
+  )
 
   it('apply new separator immediately if it is changed', () => {
     const wrapper = mount(VueNumeric, { propsData: { modelValue: 2000, separator: ',' }})
