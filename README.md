@@ -11,7 +11,7 @@ Input field component to display a formatted currency value based on [Vue](https
 
 [Live Demo](https://kevinongko.github.io/vue-numeric/)
 
-**Works with Vue 2.***
+**Works with Vue 3.***
 
 ## Installation
 
