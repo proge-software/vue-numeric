@@ -1,7 +1,7 @@
 import component from './vue-numeric.vue'
 
 const plugin = {
-  install: Vue => {
+  install (Vue) {
     Vue.component(component.name, component)
   }
 }

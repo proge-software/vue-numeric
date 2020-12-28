@@ -14,8 +14,11 @@
 <script>
     import accounting from 'accounting-js'
     export default {
+        /**
+        * Declare emit event for vue 3.
+        */
         emits: ['update:modelValue', 'blur', 'focus'],
-        name: 'EfsNumeric',
+        name: 'VueNumeric',
         props: {
             /**
              * Currency symbol.
@@ -112,6 +115,7 @@
             },
             /**
              * v-model value.
+             * using modelValue for vue 3
              */
             modelValue: {
                 type: [Number, String],
@@ -293,6 +297,7 @@
             },
             /**
              * Update parent component model value.
+             * (using 'update:modelValue' for vue 3)
              * @param {Number} value
              */
             update(value) {

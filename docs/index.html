@@ -33,7 +33,7 @@
               <label class="label"> Value: {{ money }} </label>
               <vue-numeric
                 class="input is-large"
-                v-model="money"
+                :modelValue="money"
                 :min="minValue"
                 :max="maxValue"
                 :currency="currency"
