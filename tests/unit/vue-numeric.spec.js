@@ -1,6 +1,14 @@
 /* eslint-env mocha */
-import { mount, shallowMount } from '@vue/test-utils';
+import { config, mount, shallowMount } from '@vue/test-utils';
 import VueNumeric from '@/vue-numeric.vue';
+
+beforeAll(() => {
+  config.renderStubDefaultSlot = true
+})
+
+afterAll(() => {
+  config.renderStubDefaultSlot = false
+})
 
 describe('vue-numeric.vue', () => {
   it('Use default decimal separator', () => {
@@ -250,7 +258,7 @@ describe('vue-numeric.vue', () => {
 
   it(
     'apply 0 value if user input negative value when minus props disabled and min props is negative too',
-    async () => {
+    () => {
       const component = ({
         data: () => { return {total: -200 } },
         template: '<div><vue-numeric :modelValue="total" :min="-150" :minus="false"></vue-numeric></div>',
@@ -258,8 +266,7 @@ describe('vue-numeric.vue', () => {
       })
 
       const wrapper = mount(component);
-      await wrapper.setData({ total : -200});
-      expect(wrapper.element).toBe(0);
+      expect(wrapper).toBe(0);
     }
   )
 

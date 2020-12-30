@@ -136,19 +136,24 @@
     <script src="../dist/vue-numeric.min.js"></script>
 
     <script>
-      const app = Vue.createApp({
-        data:  {
-          money: 1000,
-          minValue: 0,
-          maxValue: 999999,
-          currency: '$',
-          decimals: 2,
-          separator: ',',
-          readOnly: false
+      const { createApp } = Vue;
+
+      const App = {
+        data() {
+          return {  
+            money: 1000,
+            minValue: 0,
+            maxValue: 999999,
+            currency: '$',
+            decimals: 2,
+            separator: ',',
+            readOnly: false
+         };
         }
-      });
-      app.mount('#app');
-      Vue.use(VueNumeric.default)
+      };
+      const app = createApp(App);
+      app.use(VueNumeric.default);
+      app.mount("#app");
     </script>
   </body>
 </html>
