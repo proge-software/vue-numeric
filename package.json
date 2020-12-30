@@ -9,71 +9,81 @@
     "report-coverage": "codecov",
     "_test": "cross-env BABEL_ENV=test ./node_modules/karma/bin/karma start test/karma.config.js",
     "_test:watch": "cross-env BABEL_ENV=test ./node_modules/karma/bin/karma start test/karma.config.js --single-run=false",
-    "test": "cross-env BABEL_ENV=test jest",
-    "test:watch": "cross-env BABEL_ENV=test jest --watch"
+    "test": "cross-env BABEL_ENV=test vue-cli-service test:unit",
+    "test:watch": "jest --watch"
   },
   "main": "dist/vue-numeric.min.js",
   "dependencies": {
+    "@vue/cli-plugin-unit-jest": "^4.5.9",
     "accounting-js": "^1.1.1",
     "vue": "3.0.4"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.12.11",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-e2e-cypress": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-unit-jest": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
     "@vue/cli": "4.5.9",
     "@vue/compiler-sfc": "3.0.4",
     "@vue/test-utils": "^2.0.0-beta.13",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.2.2",
     "babel-plugin-istanbul": "^6.0.0",
-    "chai": "^4.2.0",
     "clean-webpack-plugin": "^3.0.0",
     "codecov": "^3.8.1",
     "cross-env": "^7.0.3",
     "css-loader": "^5.0.1",
-    "eslint": "^7.16.0",
-    "eslint-plugin-vue": "^7.4.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^7.0.0-0",
     "jest": "^26.6.3",
-    "karma": "^5.2.3",
-    "karma-chrome-launcher": "^3.1.0",
-    "karma-coverage": "^2.0.3",
-    "karma-sourcemap-loader": "^0.3.8",
-    "karma-spec-reporter": "^0.0.32",
-    "karma-webpack": "^4.0.2",
-    "puppeteer": "^5.5.0",
+    "vue-jest": "^5.0.0-0",
     "vue-loader": "16.1.2",
     "webpack": "4.44.2",
     "webpack-cli": "^4.3.0"
   },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "uglify": true,
-          "modules": false,
-          "targets": {
-            "browsers": [
-              "> 1%",
-              "last 2 versions",
-              "not ie <= 8"
-            ]
-          }
-        }
-      ]
-    ],
-    "env": {
-      "test": {
-        "plugins": [
-          "istanbul"
-        ]
-      }
-    }
-  },
   "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
     "extends": [
-      "eslint:recommended",
-      "plugin:vue/recommended"
+      "plugin:vue/vue3-essential",
+      "@vue/standard"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {},
+    "overrides": [
+      {
+        "files": [
+          "**/__tests__/*.{j,t}s?(x)",
+          "**/tests/unit/**/*.spec.{j,t}s?(x)"
+        ],
+        "env": {
+          "jest": true
+        }
+      }
     ]
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "jest": {
+    "preset": "@vue/cli-plugin-unit-jest",
+    "transform": {
+      "^.+\\.vue$": "vue-jest"
+    }
   },
   "bugs": {
     "url": "https://github.com/kevinongko/vue-numeric/issues"

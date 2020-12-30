@@ -39,7 +39,7 @@
                 :currency="currency"
                 :separator="separator"
                 :precision="decimals"
-                :read-only="readOnly"
+                :readOnly="readOnly"
                 read-only-class="test"
               >
               </vue-numeric>
@@ -132,15 +132,11 @@
     </div>
 
     <script src="https://unpkg.com/accounting-js"></script>
-    <script src="https://unpkg.com/vue"></script>
-    <script src="https://unpkg.com/vue-numeric"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="../dist/vue-numeric.min.js"></script>
 
     <script>
-      Vue.use(VueNumeric.default)
-
-      new Vue({
-        el: '#app',
-
+      const app = Vue.createApp({
         data:  {
           money: 1000,
           minValue: 0,
@@ -150,7 +146,9 @@
           separator: ',',
           readOnly: false
         }
-      })
+      });
+      app.mount('#app');
+      Vue.use(VueNumeric.default)
     </script>
   </body>
 </html>
