@@ -3,9 +3,10 @@
            @blur="onBlurHandler"
            @input="onInputHandler"
            @focus="onFocusHandler"
+           @update:modelValue="amount = $event"
            ref="numeric"
            type="tel"
-           v-model="amount"
+           :value="amount"
            v-if="!readOnly">
     <span v-else
           ref="readOnly">{{ amount }}</span>
@@ -17,7 +18,7 @@
         /**
         * Declare emit event for vue 3.
         */
-        emits: ['update:modelValue', 'blur', 'focus'],
+        emits: ['input', 'blur', 'focus'],
         name: 'VueNumeric',
         props: {
             /**
@@ -283,7 +284,7 @@
              * Handle input event.
              */
             onInputHandler() {
-                this.process(this.amountNumber)
+                this.process(this.amountNumber);
             },
             /**
              * Validate value before update the component.
@@ -303,7 +304,7 @@
             update(value) {
                 const fixedValue = accounting.toFixed(value, this.precision)
                 const output = this.outputType.toLowerCase() === 'string' ? fixedValue : Number(fixedValue)
-                this.$emit('update:modelValue', output)
+                this.$emit('input', output)
             },
             /**
              * Format value using symbol and separator.

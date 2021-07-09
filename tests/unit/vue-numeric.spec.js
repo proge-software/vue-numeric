@@ -67,7 +67,7 @@ describe('vue-numeric.vue', () => {
   it('outputs Number type by default', () => {
     const component = ({
       data: () => ({ total: 100 }),
-      template: '<div><vue-numeric :modelValue="total" :min="1" :max="100"></vue-numeric></div>',
+        template: '<div><vue-numeric v-model="total" :min="1" :max="100"></vue-numeric></div>',
       components: { VueNumeric }
     })
 
@@ -78,7 +78,7 @@ describe('vue-numeric.vue', () => {
   it('outputs String if specified', () => {
     const component = ({
         data: () => ({ total: 100 }),
-        template: '<div><vue-numeric :modelValue="total" outputType="String" :min="1" :max="100"></vue-numeric></div>',
+        template: '<div><vue-numeric v-model="total" outputType="String" :min="1" :max="100"></vue-numeric></div>',
         components: { VueNumeric }
     })
 
@@ -119,7 +119,7 @@ describe('vue-numeric.vue', () => {
   it('cannot exceed max props', async () => {
     const component = ({
       data: () => ({ total: 150 }),
-      template: '<div><vue-numeric :modelValue="total" :max="100"></vue-numeric></div>',
+        template: '<div><vue-numeric v-model="total" :max="100"></vue-numeric></div>',
       components: { VueNumeric }
     })
     const wrapper = mount(component);
@@ -129,7 +129,7 @@ describe('vue-numeric.vue', () => {
   it('cannot below min props', () => {
     const component = ({
       data: () => ({ total: 150 }),
-      template: '<div><vue-numeric :modelValue="total" :min="200"></vue-numeric></div>',
+        template: '<div><vue-numeric v-model="total" :min="200"></vue-numeric></div>',
       components: { VueNumeric }
     })
     
@@ -140,7 +140,7 @@ describe('vue-numeric.vue', () => {
   it('process valid value ', () => {
     const component = ({
       data: () => ({ total: 100 }),
-      template: '<div><vue-numeric :modelValue="total" :min="10" :max="200"></vue-numeric></div>',
+        template: '<div><vue-numeric v-model="total" :min="10" :max="200"></vue-numeric></div>',
       components: { VueNumeric }
     })
 
@@ -151,7 +151,7 @@ describe('vue-numeric.vue', () => {
   it('allow minus value when minus props is true', () => {
     const component = ({
       data: () => ({ total: -150 }),
-      template: '<div><vue-numeric :modelValue="total" :min="-150" :minus="true"></vue-numeric></div>',
+        template: '<div><vue-numeric v-model="total" :min="-150" :minus="true"></vue-numeric></div>',
       components: { VueNumeric }
     })
 
@@ -162,7 +162,7 @@ describe('vue-numeric.vue', () => {
   it('disallow minus value when minus props is false', () => {
     const component = ({
       data: () => ({ total: -150 }),
-      template: '<div><vue-numeric :modelValue="total" :min="-150" :minus="false"></vue-numeric></div>',
+        template: '<div><vue-numeric v-model="total" :min="-150" :minus="false"></vue-numeric></div>',
       components: { VueNumeric }
     })
 
@@ -175,7 +175,7 @@ describe('vue-numeric.vue', () => {
     const wrapper = mount({
       el,
       data: () => ({ total: 0 }),
-      template: '<div><vue-numeric :modelValue="total"></vue-numeric></div>',
+        template: '<div><vue-numeric v-model="total"></vue-numeric></div>',
       components: { VueNumeric }
     })
 
@@ -247,7 +247,7 @@ describe('vue-numeric.vue', () => {
     () => {
       const component = ({
         data: () => ({ total: -200 }),
-        template: '<div><vue-numeric :modelValue="total" :min="150" :minus="false"></vue-numeric></div>',
+          template: '<div><vue-numeric v-model="total" :min="150" :minus="false"></vue-numeric></div>',
         components: { VueNumeric }
       })
 
@@ -261,12 +261,12 @@ describe('vue-numeric.vue', () => {
     () => {
       const component = ({
         data: () => { return {total: -200 } },
-        template: '<div><vue-numeric :modelValue="total" :min="-150" :minus="false"></vue-numeric></div>',
+        template: '<div><vue-numeric v-model="total" :min="-150" :minus="false"></vue-numeric></div>',
         components: { VueNumeric }
       })
 
       const wrapper = mount(component);
-      expect(wrapper).toBe(0);
+      expect(wrapper.vm.total).toBe(0);
     }
   )
 

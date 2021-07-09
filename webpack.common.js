@@ -5,7 +5,7 @@ const { CleanWebpackPlugin} = require('clean-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   context: __dirname,
   resolve: {
     modules: [
@@ -53,9 +53,5 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new VueLoaderPlugin()
-  ],
-  devtool: false,
-  performance: {
-    hints: false
-  }
+  ]
 }

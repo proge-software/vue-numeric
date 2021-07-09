@@ -31,9 +31,9 @@
           <div class="column is-12 has-text-centered">
             <p class="control">
               <label class="label"> Value: {{ money }} </label>
-              <vue-numeric
+              <vue-numeric 
                 class="input is-large"
-                :modelValue="money"
+                v-model="money"
                 :min="minValue"
                 :max="maxValue"
                 :currency="currency"
